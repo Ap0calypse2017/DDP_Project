@@ -6,17 +6,40 @@
     <main>
       <h3>First all all, some information!</h3>
       <NamePicker></NamePicker>
+
+      <h2>Phone Number:</h2>
+      <div class="phoneNumberCont flex flex-column align-items-center justify-content-center">
+        <span>{{ phoneNumber }}</span>
+        <Slider v-model="phoneNumber" :min="0" :max="9999999999" class="w-30rem" ></Slider>
+      </div>
+      <h2>Age</h2>
+      <div class="ageCont flex flex-column align-items-center justify-content-center">
+        <p>{{age}}</p>
+        <Slider v-model="age" class="w-30rem" :min="0" :max="200"/>
+      </div>
+
+
+
     </main>
   </div>
 </template>
 
 <script>
 import NamePicker from '@/components/NamePicker.vue'
+import Slider from 'primevue/slider';
+
 
 export default {
   components: {
-    NamePicker
-  }
+    NamePicker,
+    Slider,
+  },
+  data() {
+    return {
+      phoneNumber: 0,
+      age: 0
+    };
+  },
 }
 </script>
 
@@ -27,4 +50,6 @@ export default {
   align-items:center;
 
 }
+
+
 </style>

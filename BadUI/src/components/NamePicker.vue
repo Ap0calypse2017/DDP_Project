@@ -1,19 +1,20 @@
 <template>
-  <div class="mainCard">
+  <div class="mainCard mb-10" >
     <h2>Name: {{name}} </h2>
-    <Panel class="flex flex-column align-items-center justify-content-center">
-      <h1>{{letters[pointer]}}</h1>
-      <div class="buttonCont">
-        <Button label=">>" @click="forward"></Button>
-        <Button label="OK" @click="accept"></Button>
-        <Button label="Delete" @click="deleteLetter"></Button>
-        <Button label="<<" @click="backward"></Button>
+    <Panel class="flex flex-column align-items-center justify-content-center mb-2">
+      <div class="flex flex-column align-items-center justify-content-center">
+        <h1>{{letters[pointer]}}</h1>
+        <div class="buttonCont">
+          <Button label=">>" @click="forward"></Button>
+          <Button label="OK" @click="accept"></Button>
+          <Button label="Delete" @click="deleteLetter"></Button>
+          <Button label="<<" @click="backward"></Button>
+        </div>
       </div>
     </Panel>
-    <Button label="Confirm" @mouseover="openDialog"></Button>
+    <Button label="Confirm"  class="mb-4" @mouseover="openDialog"></Button>
     <Dialog v-model:visible="dialogVis">
       <div>
-        <div></div>
         <p>You have exceeded the maximum time exaclty:</p>
         <h2>{{(Math.random() * (58 - 1) + 1).toFixed(2) }} ms ago</h2>
         <p>Don't worry, we will use an AI to complete you sentence</p>
@@ -43,7 +44,7 @@ export  default {
       timeAgo: null,
       dialog2Vis:false,
       alreadOpened: false,
-      letters: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"]
+      letters: ["A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K", "L", "M", "N", "O", "P", "Q", "R", "S", "T", "U", "V", "W", "X", "Y", "Z"].sort(()=>Math.random() - 0.5)
     }
   },
   methods: {
@@ -61,11 +62,14 @@ export  default {
     },
 
     accept() {
-      this.name += this.letters[this.pointer]
+      if(!this.alreadOpened) {
+        this.name += this.letters[this.pointer]
+      }
+
     },
 
     deleteLetter() {
-      if (this.name.length > 0) {
+      if (this.name.length > 0 && !this.alreadOpened) {
         this.name = this.name.slice(0, -1);
       }
     },
