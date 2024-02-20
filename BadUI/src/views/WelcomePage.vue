@@ -10,7 +10,7 @@
     <div class="dialogContainer flex flex-column justify-content-center">
 
     <p>Welcome.</p>
-      <p>I am General Aaron Herres from the US Department Of Homeland Security.</p>
+      <p>I am General Aaron Herres from the US Department of Homeland Security.</p>
       <p>The time we have is limited, so let's be quick</p>
       <p>Due to a hacker attack, we have lose control of all the nuclear weapons of the nation. This hacker has started a countdown for a launch against all the major cities of the world in thirty minutes.</p>
       <p>The only way to stop it is using the Authorization OMEGA, created in 1999 to obtain master control and prevent the attack. This authorization is so old that not even the hacker found it.</p>
