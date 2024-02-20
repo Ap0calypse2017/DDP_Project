@@ -52,7 +52,8 @@ export default {
     return {
       phoneNumber: 0,
       age: 0,
-      updateScreen: null
+      updateScreen: null,
+      countdown: 600,
     }
   },
   mounted() {
@@ -66,16 +67,21 @@ export default {
   methods: {
     handleSubmit() {
       this.$router.push('/questions')
-    }
+    },
+
   }
 }
 </script>
 
-<style scoped>
+<style>
+body {
+  background-color:white
+}
 .mainContainer {
   display: flex;
   flex-direction: row;
   align-items: center;
+  background-color:white;
 }
 
 .submit {

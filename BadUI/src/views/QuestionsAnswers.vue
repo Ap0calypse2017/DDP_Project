@@ -41,8 +41,8 @@ export default {
   name: 'QuestionsAnswers',
   data() {
     return {
-      question: ['What is the price of R2D2 Projector?', 'Q2', 'Q3', 'Q4', 'Q5'],
-      links: ['https://arngren.net/', 'L2', 'L3', 'L4', 'L5'],
+      question: ['What is the price of R2D2 Projector?', 'What is the type of fuel of a Toyota Aygo X?', 'Q3', 'Q4', 'Q5'],
+      links: ['https://arngren.net/', 'https://www.lingscars.com/personal-car-leasing/audi/q4-e-tron-estate/4380662-150kW-40-82kWh-Sport-(Leather)-(204bhp)-Estate-5dr-Electric-Automatic', 'L3', 'L4', 'L5'],
       answer: ['A1', 'A2', 'A3', 'A4', 'A5'],
       scoreDisplay: [0, 1, 'II', '三', 'Cuatro', 'Cinque'],
       score: 0,
