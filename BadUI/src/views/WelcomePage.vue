@@ -3,7 +3,7 @@
     <img  class="w-2" src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8a/Seal_of_the_United_States_Department_of_Homeland_Security.svg/2048px-Seal_of_the_United_States_Department_of_Homeland_Security.svg.png" alt="seal">
     <Button class="mt-8 bg-blue-400 p-4 w-1" label="BEGIN" @click="this.$router.push('/start');"></Button>
   </div>
-  <Dialog v-model:visible="visibility">
+  <Dialog v-model:visible="visibility" :pt="{root: { class: 'w-12 sm:w-9 md:w-6' }}">
     <div class="flex flex-row">
     <Avatar image="https://www.gamespot.com/a/uploads/screen_kubrick/1551/15511094/3388284-game%20news%20update.00_00_38_29.still164.png" class="mr-2" size="xlarge" shape="circle" /><h3>General Herres</h3>
     </div>
@@ -28,6 +28,11 @@ import Dialog from 'primevue/dialog'
 import Avatar from 'primevue/avatar'
 
 export default {
+  methods: {
+    root() {
+      return root
+    }
+  },
   components: {
     Button,
     Dialog,
