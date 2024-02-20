@@ -1,11 +1,13 @@
 <template>
   <button v-if="questionNum == 3" class="submitBtnTopLeft" @click="checkAnswer">Submit</button>
   <div class="mainContainer">
+    <div class="countdown-container">
+      <h2>Time Remaining:</h2>
+      <div id="countdown"></div>
+    </div>
     <h1 v-if="questionNum < 5" class="score">Score:{{ scoreDisplay[score] }}</h1>
     <div v-if="questionNum == 5" class="tryAgainContainer">
-      <h1 class="score">Score:{{ scoreDisplay[score] }}</h1>
-      <h1>Congratulations! You are a certified Bad UI treasure hunter!</h1>
-      <button class="tryBtn" @click="resetQuiz">Try Again</button>
+      {{this.$router.push("ending")}}
     </div>
     <div
       v-if="questionNum < 5"
@@ -47,8 +49,12 @@ export default {
       scoreDisplay: [0, 1, 'II', '三', 'Cuatro', 'Cinque'],
       score: 0,
       questionNum: 0,
-      userAnswer: ''
+      userAnswer: '',
+      countdown: 600,
     }
+  },
+  mounted() {
+    this.startCountdown();
   },
   methods: {
     checkAnswer() {
@@ -72,7 +78,35 @@ export default {
       this.questionNum = 0
       this.score = 0
       this.$router.push('/')
-    }
+    },
+    startCountdown() {
+      this.updateCountdown();
+      this.countdownInterval = setInterval(() => {
+        this.countdown--;
+        this.updateCountdown();
+
+        if (this.countdown <= 0) {
+          clearInterval(this.countdownInterval);
+          // Handle what should happen when the countdown reaches zero
+          this.handleCountdownEnd();
+        }
+      }, 1000); // Update every second
+    },
+
+    updateCountdown() {
+      const minutes = Math.floor(this.countdown / 60);
+      const seconds = this.countdown % 60;
+      document.getElementById('countdown').innerHTML = `${this.padNumber(minutes)}:${this.padNumber(seconds)}`;
+    },
+
+    padNumber(number) {
+      return number.toString().padStart(2, '0');
+    },
+
+    handleCountdownEnd() {
+      // Perform actions when the countdown reaches zero
+      alert('Time is up!');
+    },
   }
 }
 </script>

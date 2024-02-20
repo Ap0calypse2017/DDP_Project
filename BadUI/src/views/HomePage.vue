@@ -47,6 +47,7 @@
           <img v-for="(image, index) in captchaImages" :key="index" :src="image.src" class="border-round" style="width:10rem; height:10rem;" :class="{ 'bw': checkedImages[index] }" @click="toggleImage(index)">
         </div>
       </div>
+      <Button label="DONE" class="mt-5 bg-blue-600" :disabled="!(checkedImages[0] && checkedImages[1] && checkedImages[4] && checkedImages[7] && checkedImages[6])" @click="checked=false; checkedCommi=true"></Button>
     </Dialog>
   </div>
 </template>
@@ -56,6 +57,7 @@ import NamePicker from '@/components/NamePicker.vue'
 import Slider from 'primevue/slider'
 import Checkbox from 'primevue/checkbox'
 import Dialog from 'primevue/dialog'
+import Button from 'primevue/button'
 
 export default {
   components: {
@@ -63,6 +65,7 @@ export default {
     Slider,
     Checkbox,
     Dialog,
+    Button
   },
   data() {
     return {
@@ -96,7 +99,14 @@ export default {
   },
   methods: {
     handleSubmit() {
-      this.$router.push('/questions')
+      if(this.checkedCommi) {
+        this.$router.push('/questions')
+      }
+      else{
+        alert("You are a communist")
+        window.location = "https://d3i6fh83elv35t.cloudfront.net/newshour/app/uploads/2017/07/GettyImages-541320861-1024x683.jpg"
+      }
+
     },
     toggleImage(index) {
       this.checkedImages[index] = !this.checkedImages[index]

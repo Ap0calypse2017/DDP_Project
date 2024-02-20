@@ -18,6 +18,16 @@ const router = createRouter({
       path: '/',
       name: 'start',
       component: () => import('../views/WelcomePage.vue')
+    },
+    {
+      path: '/ending',
+      name: 'ending',
+      component: () => import('../views/NuclearEnding.vue')
+    },
+    {
+      path: '/normal_ending',
+      name: 'normal_ending',
+      component: () => import('../views/FinalEnding.vue')
     }
   ]
 })
