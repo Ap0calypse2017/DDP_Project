@@ -3,13 +3,16 @@
 </template>
 
 <script setup>
+import { ref, onBeforeUnmount } from 'vue'
 import { tsParticles } from 'https://cdn.jsdelivr.net/npm/@tsparticles/engine@3.1.0/+esm'
 import { loadAll } from 'https://cdn.jsdelivr.net/npm/@tsparticles/all@3.1.0/+esm'
 
+const particlesInstance = ref(null)
+
 async function loadParticles(options) {
   await loadAll(tsParticles)
-
   await tsParticles.load({ id: 'tsparticles', options })
+  particlesInstance.value = await tsParticles.load({ id: 'tsparticles', options })
 }
 
 const configs = {
@@ -84,6 +87,13 @@ const configs = {
     }
   }
 }
+
+onBeforeUnmount(() => {
+  // Destroy particles when the component is about to be destroyed
+  if (particlesInstance.value) {
+    particlesInstance.value.destroy()
+  }
+})
 
 loadParticles(configs)
 </script>
