@@ -1,13 +1,14 @@
 <template>
   <button v-if="questionNum == 3" class="submitBtnTopLeft" @click="checkAnswer">Submit</button>
   <div class="mainContainer">
+    <particles-container />
     <div class="countdown-container">
       <h2>Time Remaining:</h2>
       <div id="countdown"></div>
     </div>
     <h1 v-if="questionNum < 5" class="score">Score:{{ scoreDisplay[score] }}</h1>
     <div v-if="questionNum == 5" class="tryAgainContainer">
-      {{this.$router.push("ending")}}
+      {{ this.$router.push('ending') }}
     </div>
     <div
       v-if="questionNum < 5"
@@ -39,26 +40,43 @@
 </template>
 
 <script>
+import ParticlesContainer from '@/components/ParticlesContainer.vue'
 export default {
   name: 'QuestionsAnswers',
+  components: {
+    ParticlesContainer
+  },
   data() {
     return {
-      question: ['What is the price of R2D2 Projector?', 'What is the type of fuel of a Toyota Aygo X?', 'Who last edited the "A message from Communications" box?', 'Q4', 'Q5'],
-      links: ['https://arngren.net/', 'https://www.lingscars.com/personal-car-leasing/audi/q4-e-tron-estate/4380662-150kW-40-82kWh-Sport-(Leather)-(204bhp)-Estate-5dr-Electric-Automatic', 'https://www.art.yale.edu', 'L4', 'L5'],
-      answer: ['A1', 'A2', 'Lindsey Mancini', 'A4', 'A5'],
+      question: [
+        'What is the price of R2D2 Projector?',
+        'What is the type of fuel of a Toyota Aygo X?',
+        'Who last edited the "A message from Communications" box?',
+        'Q4',
+        'Q5'
+      ],
+      links: [
+        'https://arngren.net/',
+        'https://www.lingscars.com/personal-car-leasing/audi/q4-e-tron-estate/4380662-150kW-40-82kWh-Sport-(Leather)-(204bhp)-Estate-5dr-Electric-Automatic',
+        'https://www.art.yale.edu',
+        'L4',
+        'L5'
+      ],
+      answer: ['299', 'A2', 'Lindsey Mancini', 'A4', 'A5'],
       scoreDisplay: [0, 1, 'II', '三', 'Cuatro', 'Cinque'],
       score: 0,
       questionNum: 0,
       userAnswer: '',
-      countdown: 600,
+      countdown: 600
     }
   },
   mounted() {
-    this.startCountdown();
+    this.startCountdown()
   },
   methods: {
     checkAnswer() {
       const correctAnswer = this.answer[this.questionNum]
+      console.log(correctAnswer)
       if (!isNaN(correctAnswer)) {
         parseInt(this.userAnswer)
       }
@@ -80,44 +98,54 @@ export default {
       this.$router.push('/')
     },
     startCountdown() {
-      this.updateCountdown();
+      this.updateCountdown()
       this.countdownInterval = setInterval(() => {
-        this.countdown--;
-        this.updateCountdown();
+        this.countdown--
+        this.updateCountdown()
 
         if (this.countdown <= 0) {
-          clearInterval(this.countdownInterval);
+          clearInterval(this.countdownInterval)
           // Handle what should happen when the countdown reaches zero
-          this.handleCountdownEnd();
+          this.handleCountdownEnd()
         }
-      }, 1000); // Update every second
+      }, 1000) // Update every second
     },
 
     updateCountdown() {
-      const minutes = Math.floor(this.countdown / 60);
-      const seconds = this.countdown % 60;
-      document.getElementById('countdown').innerHTML = `${this.padNumber(minutes)}:${this.padNumber(seconds)}`;
+      const minutes = Math.floor(this.countdown / 60)
+      const seconds = this.countdown % 60
+      document.getElementById('countdown').innerHTML =
+        `${this.padNumber(minutes)}:${this.padNumber(seconds)}`
     },
 
     padNumber(number) {
-      return number.toString().padStart(2, '0');
+      return number.toString().padStart(2, '0')
     },
 
     handleCountdownEnd() {
       // Perform actions when the countdown reaches zero
-      alert('Time is up!');
-    },
+      alert('Time is up!')
+    }
   }
 }
 </script>
 
 <style>
+#countdown {
+  font-size: 2em;
+  text-align: center;
+  z-index: 1;
+}
+.countdown-container {
+  z-index: 1;
+}
 .mainContainer {
   display: flex;
   justify-content: center;
   align-items: center;
   height: 100vh;
   flex-direction: column;
+  z-index: 1;
 }
 .tryAgainContainer {
   display: flex;
@@ -125,6 +153,7 @@ export default {
   justify-content: center;
   align-items: center;
   height: 100vh;
+  z-index: 1;
 }
 .tryBtn {
   display: flex;
@@ -161,8 +190,10 @@ export default {
 .questionBox {
   border: 1px solid black;
   padding: 30px;
-  width: 500px;
+  width: 50%;
   text-align: center;
+  position: relative;
+  background-color: white;
 }
 .answer {
   padding: 10px;
@@ -171,6 +202,7 @@ export default {
 }
 .score {
   text-align: center;
+  z-index: 1;
 }
 .scrollable-content {
   max-height: 100vh;
