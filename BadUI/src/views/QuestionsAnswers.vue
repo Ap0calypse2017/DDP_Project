@@ -52,17 +52,17 @@ export default {
         'What is the price of R2D2 Projector?',
         'What is the type of fuel of a Toyota Aygo X?',
         'Who last edited the "A message from Communications" box?',
-        'Q4',
+        'Who is the  SYSADMIN',
         'In the travel report for Hanyang University Autumn 2019 (II), courses were full within what?'
       ],
       links: [
         'https://arngren.net/',
         'https://www.lingscars.com/personal-car-leasing/audi/q4-e-tron-estate/4380662-150kW-40-82kWh-Sport-(Leather)-(204bhp)-Estate-5dr-Electric-Automatic',
         'https://www.art.yale.edu',
-        'L4',
+        'https://www.windows93.net/',
         'https://itustudent.itu.dk/'
       ],
-      answer: ['299', 'A2', 'Lindsey Mancini', 'A4', '4-5 seconds'],
+      answer: ['299', 'Fuel', 'Lindsey Mancini', 'Doctor House', '4-5 seconds'],
       scoreDisplay: [0, 1, 'II', '三', 'Cuatro', 'Cinque'],
       score: 0,
       questionNum: 0,
