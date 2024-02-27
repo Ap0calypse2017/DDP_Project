@@ -62,7 +62,7 @@ export default {
         'http://www.irishwrecksonline.net/',
         'https://itustudent.itu.dk/'
       ],
-      answer: ['299', 'Fuel', 'Lindsey Mancini', '1827', '4-5 seconds'],
+      answer: ['299', 'Petrol', 'Lindsey Mancini', '1827', '4-5 seconds'],
       scoreDisplay: [0, 1, 'II', '三', 'Cuatro', 'Cinque'],
       score: 0,
       questionNum: 0,
