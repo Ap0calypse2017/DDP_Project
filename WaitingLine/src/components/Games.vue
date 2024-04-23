@@ -1,65 +1,93 @@
 <template>
   <div>
-    <h1>Choose a game to play:</h1>
-    <div>
-      <button @click="playGame('rock-paper-scissors')">
-        Rock, Paper, Scissors
-      </button>
-      <button @click="playGame('other-game')">Other Game</button>
-    </div>
-    <div v-if="gameChoice == 'rock-paper-scissors'">
+    <div class="flex flex-column align-items-center">
       <h2>Choose your move:</h2>
-      <button @click="userChoice = 'rock' && evaluateGame()">Rock</button>
-      <button @click="userChoice = 'paper' && evaluateGame()">Paper</button>
-      <button @click="userChoice = 'scissors' && evaluateGame()">
-        Scissors
-      </button>
+      <div class="flex flex-row align-items-center justify-content-center gap-8">
+      <Card class="w-3" @click="evaluateGame('rock')">
+        <template #title>Rock</template>
+        <template #content>
+          <div class="flex flex-row space-in-between align-items-center justify-content-center">
+            <img src="https://icons.iconarchive.com/icons/microsoft/fluentui-emoji-flat/256/Rock-Flat-icon.png" class="w-6">
+          </div>
+
+        </template>
+      </Card>
+        <Card class="w-3" @click="evaluateGame('paper')">
+          <template #title>Paper</template>
+          <template #content>
+            <div class="flex flex-row space-in-between align-items-center justify-content-center">
+              <img src="https://icons.iconarchive.com/icons/hopstarter/sleek-xp-basic/256/Document-Blank-icon.png" class="w-6">
+            </div>
+
+          </template>
+        </Card>
+        <Card class="w-3" @click="evaluateGame('scissors')">
+          <template #title>Scissors</template>
+          <template #content>
+            <div class="flex flex-row space-in-between align-items-center justify-content-center">
+              <img src="https://icons.iconarchive.com/icons/avosoft/warm-toolbar/256/cut-icon.png" class="w-6">
+            </div>
+
+          </template>
+        </Card>
+      </div>
+      <div v-if="gameResult" class="flex flex-column align-items-center justify-content-center">
+        <h2>Game Result: {{ gameResult }}</h2>
+        <p>Opponent chose: {{ computerChoice }}</p>
+        <Button @click="resetGame">Choose Again</Button>
+      </div>
     </div>
-    <div v-if="gameResult">
-      <h2>Game Result: {{ gameResult }}</h2>
-      <button @click="resetGame">Play Again</button>
-    </div>
+
   </div>
 </template>
 
 <script>
+import Card from 'primevue/card'
+import Button from 'primevue/button'
+
 export default {
+  components: {
+    Card,
+    Button,
+  },
   data() {
     return {
       gameResult: null,
       userChoice: null,
       gameChoice: null,
       computerChoice: null,
+      alreadyDone: false
     };
   },
   methods: {
-    playGame(game) {
-      // Implement game logic here
-      if (game === "rock-paper-scissors") {
-        this.gameChoice = game;
+    evaluateGame(choice) {
+      if(!this.alreadyDone) {
+        this.userChoice = choice
         const options = ["rock", "paper", "scissors"];
         this.computerChoice =
-          options[Math.floor(Math.random() * options.length)];
+            options[Math.floor(Math.random() * options.length)];
+        console.log(this.userChoice, this.computerChoice);
+        if (this.userChoice === this.computerChoice) {
+          this.gameResult = "It's a tie!";
+        } else if (
+            (this.userChoice === "rock" && this.computerChoice === "scissors") ||
+            (this.userChoice === "paper" && this.computerChoice === "rock") ||
+            (this.userChoice === "scissors" && this.computerChoice === "paper")
+        ) {
+          this.alreadyDone = true
+          this.gameResult = "You win!";
+          this.$emit('gameResult','win');
+        } else {
+          this.alreadyDone = true
+          this.gameResult = "You lose!";
+          this.$emit('gameResult','lose')
+        }
+
       }
-    },
-    evaluateGame() {
-      if (this.userChoice === this.computerChoice) {
-        this.gameResult = "It's a tie!";
-      } else if (
-        (this.userChoice === "rock" && this.computerChoice === "scissors") ||
-        (this.userChoice === "paper" && this.computerChoice === "rock") ||
-        (this.userChoice === "scissors" && this.computerChoice === "paper")
-      ) {
-        this.gameResult = "You win!";
-      } else {
-        this.gameResult = "You lose!";
-      }
+
     },
     resetGame() {
-      this.gameResult = null;
-      this.userChoice = null;
-      this.gameChoice = null;
-      this.computerChoice = null;
+      this.$emit('closeGame')
     },
   },
 };
