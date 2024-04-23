@@ -1,4 +1,6 @@
-
+<script setup>
+import TheWelcome from '../components/TheWelcome.vue'
+</script>
 
 <template>
   <main class="flex flex-column align-items-center justify-content-center w-full h-full">
