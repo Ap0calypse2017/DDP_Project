@@ -25,6 +25,14 @@
           </div>
         </template>
       </Card>
+      <Card class="w-3">
+        <template #title>Custom game</template>
+        <template #content>
+          <div class="flex flex-row space-in-between align-items-center justify-content-center">
+            <img src="https://cdn-icons-png.flaticon.com/512/32/32339.png" class="w-12rem">
+          </div>
+        </template>
+      </Card>
     </div>
   </Dialog>
   <div v-if="rpfVisible" class="surface-100 text-900 w-6 p-5 mt-5">
