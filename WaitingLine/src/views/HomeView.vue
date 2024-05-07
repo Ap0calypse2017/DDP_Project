@@ -2,8 +2,8 @@
 
 <template>
   <main class="flex flex-column align-items-center justify-content-center w-full h-full gap-4">
-    <h1>TheAmazingSite&#8482</h1>
-    <div style="display:none">
+    <h1>QueueManager&#8482</h1>
+    <div style="display:block">
       <h2>Enter Queue Code</h2>
       <InputOTP></InputOTP>
     </div>
