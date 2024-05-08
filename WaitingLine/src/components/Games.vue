@@ -2,30 +2,30 @@
   <div>
     <div class="flex flex-column align-items-center">
       <h2>Choose your move:</h2>
-      <div class="flex flex-row align-items-center justify-content-center gap-8">
-      <Card class="w-3" @click="evaluateGame('rock')">
+      <div class="flex xl:flex-row flex-column align-items-center justify-content-center gap-8">
+      <Card class="w-9 xl:w-3" @click="evaluateGame('rock')">
         <template #title>Rock</template>
         <template #content>
           <div class="flex flex-row space-in-between align-items-center justify-content-center">
-            <img src="https://icons.iconarchive.com/icons/microsoft/fluentui-emoji-flat/256/Rock-Flat-icon.png" class="w-6">
+            <img src="https://icons.iconarchive.com/icons/microsoft/fluentui-emoji-flat/256/Rock-Flat-icon.png" class="xl:w-6 w-full">
           </div>
 
         </template>
       </Card>
-        <Card class="w-3" @click="evaluateGame('paper')">
+        <Card class="w-9 xl:w-3" @click="evaluateGame('paper')">
           <template #title>Paper</template>
           <template #content>
             <div class="flex flex-row space-in-between align-items-center justify-content-center">
-              <img src="https://icons.iconarchive.com/icons/hopstarter/sleek-xp-basic/256/Document-Blank-icon.png" class="w-6">
+              <img src="https://icons.iconarchive.com/icons/hopstarter/sleek-xp-basic/256/Document-Blank-icon.png" class="xl:w-6 w-full">
             </div>
 
           </template>
         </Card>
-        <Card class="w-3" @click="evaluateGame('scissors')">
+        <Card class="w-9 xl:w-3" @click="evaluateGame('scissors')">
           <template #title>Scissors</template>
           <template #content>
             <div class="flex flex-row space-in-between align-items-center justify-content-center">
-              <img src="https://icons.iconarchive.com/icons/avosoft/warm-toolbar/256/cut-icon.png" class="w-6">
+              <img src="https://icons.iconarchive.com/icons/avosoft/warm-toolbar/256/cut-icon.png" class="xl:w-6 w-full">
             </div>
 
           </template>

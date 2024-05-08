@@ -2,43 +2,44 @@
 <main class="flex flex-column align-items-center justify-content-center p-5">
   <ProgressSpinner strokeWidth="5"/>
   <h3>Your queue number is {{position}}/100</h3>
+  <h3>Number of players defeated: {{wins}}</h3>
   <h5>Try to relax</h5>
   <Button label="Challenge the person on top of you" @click="visibleDialog=true"></Button>
-  <Dialog v-model:visible="visibleDialog" class="w-6">
+  <Dialog v-model:visible="visibleDialog" class="xl:w-6 w-10">
     <h2>The player accepted your challenge!</h2>
-    <div class="mainContainer flex flex-row space-in-between align-items-center justify-content-center gap-8">
+    <div class="mainContainer flex xl:flex-row flex-column space-in-between align-items-center justify-content-center gap-8">
 
-      <Card class="w-3" @click="selectGame('rps')">
+      <Card class="xl:w-3 w-6" @click="selectGame('rps')">
         <template #title>Rock-Paper-Scissors</template>
         <template #content>
           <div class="flex flex-row space-in-between align-items-center justify-content-center">
-            <img src="https://cdn-icons-png.flaticon.com/512/6851/6851302.png" class="w-10rem">
+            <img src="https://cdn-icons-png.flaticon.com/512/6851/6851302.png" class="xl:w-10rem w-full">
           </div>
 
         </template>
       </Card>
-      <Card class="w-3" @click="selectGame('TaC')">
+      <Card class="xl:w-3 w-6" @click="selectGame('TaC')">
         <template #title>Toss a Coin</template>
         <template #content>
           <div class="flex flex-row space-in-between align-items-center justify-content-center">
-            <img src="https://www.iconpacks.net/icons/1/free-heads-or-tails-icon-456-thumb.png" class="w-12rem">
+            <img src="https://www.iconpacks.net/icons/1/free-heads-or-tails-icon-456-thumb.png" class="xl:w-10rem w-full">
           </div>
         </template>
       </Card>
-      <Card class="w-3">
+      <Card class="xl:w-3 w-6">
         <template #title>Custom game</template>
         <template #content>
           <div class="flex flex-row space-in-between align-items-center justify-content-center">
-            <img src="https://cdn-icons-png.flaticon.com/512/32/32339.png" class="w-12rem">
+            <img src="https://cdn-icons-png.flaticon.com/512/32/32339.png" class="xl:w-10rem w-full">
           </div>
         </template>
       </Card>
     </div>
   </Dialog>
-  <div v-if="rpfVisible" class="surface-100 text-900 w-6 p-5 mt-5">
+  <div v-if="rpfVisible" class="surface-100 text-900 xl:w-6 w-9 p-5 mt-5">
     <Games :gameResult="gameResult" @gameResult="changePosition" @closeGame="rpfVisible=false"></Games>
   </div>
-  <div v-if="tacVisible" class="flex flex-column space-in-between align-items-center justify-content-center surface-100 text-900 w-6 p-5 mt-5">
+  <div v-if="tacVisible" class="flex flex-column space-in-between align-items-center justify-content-center surface-100 text-900 xl:w-6 w-9 p-5 mt-5">
     <h2>Game Result: {{ gameResult }}</h2>
     <div v-if="resultCoinToss === 'heads'">
       <img src="https://static.thenounproject.com/png/365780-200.png">
@@ -85,6 +86,7 @@ export default {
   data() {
     return {
       position: 54,
+      wins: 0,
       visibleDialog: false,
       game: null,
       rpfVisible: false,
@@ -113,6 +115,7 @@ export default {
         if(this.assignedCoinFace == this.resultCoinToss){
           this.gameResult = "You Win!"
           this.position -=1
+          this.wins += 1
         }else{
           this.gameResult = "You Lost!"
           this.position +=1
@@ -124,6 +127,7 @@ export default {
     changePosition(gameResult){
       if(gameResult === "win"){
         this.position -=1
+        this.wins += 1
       }else{
         this.position +=1
       }
@@ -131,7 +135,7 @@ export default {
     },
     startTimer() {
       setTimeout(() => {
-        if(this.visibleDialog == false && this.rpfVisible == false && this.tacVisible == false){
+        if(this.visibleDialog === false && this.rpfVisible === false && this.tacVisible === false){
           const options = ["Rock, Paper, Scissor","Heads or Tails"];
           this.challengedGame = options[Math.floor(Math.random() * options.length)]
           this.challengeVisible= true;
@@ -157,6 +161,8 @@ body {
   background-image: url("https://i.pinimg.com/originals/33/0e/fe/330efe6bc1293733b2d4f0ea3cee9d2e.gif");
   background-repeat: no-repeat;
   background-size: cover;
-  color:white
+  color:white;
+  min-height: calc(100vh + 50vh);
+  width:100%
 }
 </style>

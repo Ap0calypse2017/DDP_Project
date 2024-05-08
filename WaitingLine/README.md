@@ -1,6 +1,6 @@
 # WaitingLine
 
-This template should help get you started developing with Vue 3 in Vite.
+This template should help get you started developing with Vue 3 in Vite in order to be able to run the code.
 
 ## Recommended IDE Setup
 
@@ -16,14 +16,9 @@ See [Vite Configuration Reference](https://vitejs.dev/config/).
 npm install
 ```
 
-### Compile and Hot-Reload for Development
+### Compile and run the code (the address will be displayed in the terminal)
 
 ```sh
 npm run dev
 ```
 
-### Compile and Minify for Production
-
-```sh
-npm run build
-```
