@@ -94,7 +94,9 @@ export default {
     if (navigator.appVersion.indexOf('Win') !== -1) this.updateScreen = 'https://geekprank.com/win10-update/'
     else if (navigator.appVersion.indexOf('Mac') !== -1) this.updateScreen = 'https://geekprank.com/apple/'
     else this.updateScreen = 'https://geekprank.com/matrix-code-rain/'
-
+    if (sessionStorage.getItem('isReloaded')) {
+      sessionStorage.removeItem('isReloaded', true)
+    }
     console.log(OSName)
   },
   methods: {

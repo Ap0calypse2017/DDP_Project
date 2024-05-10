@@ -16,6 +16,7 @@
       <p>The only way to stop it is using the OMEGA clearance, created in 1999 to obtain master control and prevent the attack. This authorization is so old that not even the hacker found it.</p>
       <p>Unfortunately, the code to obtain this Authorization has been shattered in five parts and hidden inside five websites as random information</p>
       <p>To make difficult for spies to obtain the code, the system is organized with a terrible UI. We thought it was a good idea back in the '90s, but today it has no helped our explorers</p>
+      <p><b style="color: green;">IMPORTANT: The spies are able to track your CTRL+F history, so you are not allowed to use CTRL+F to search for the codes hidden in the websites</b></p>
       <p>We are contacting you for your exceptional abilities to navigate in websites. Our best engineers tried to recover the password but they got lost inside the sites. You are our only hope</p>
       <p>Once you will click "BEGIN" you will enter inside the navigation system that will guide you to retrieve the password. Be quick, you will have ten minutes before the system shutdown. </p>
       <p>Find the answers to the questions. We will enter each part of the code in the system in real time</p>

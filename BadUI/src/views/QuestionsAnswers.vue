@@ -71,6 +71,10 @@ export default {
     }
   },
   mounted() {
+    if (!sessionStorage.getItem('isReloaded')) {
+      sessionStorage.setItem('isReloaded', true)
+      location.reload()
+    }
     this.startCountdown()
   },
   methods: {
@@ -138,6 +142,7 @@ export default {
 }
 .countdown-container {
   z-index: 1;
+  margin-bottom: 20px;
 }
 .mainContainer {
   display: flex;
@@ -203,6 +208,7 @@ export default {
 .score {
   text-align: center;
   z-index: 1;
+  margin-bottom: 20px;
 }
 .scrollable-content {
   max-height: 100vh;
