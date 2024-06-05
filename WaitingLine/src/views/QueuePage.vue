@@ -26,7 +26,7 @@
           </div>
         </template>
       </Card>
-      <Card class="xl:w-3 w-6">
+      <Card class="xl:w-3 w-6" @click="customVisible = true; visibleDialog=false">
         <template #title>Custom game</template>
         <template #content>
           <div class="flex flex-row space-in-between align-items-center justify-content-center">
@@ -64,6 +64,13 @@
 
     </div>
   </Dialog>
+  <Dialog v-model:visible="customVisible">
+    <h1>Did you win?</h1>
+    <div class="flex flex-row align-items-center justify-content-center gap-5">
+      <Button label="YES" @click="position--; customVisible=false; wins++"></Button>
+      <Button label="NO" @click="position++; customVisible=false"></Button>
+    </div>
+  </Dialog>
 </main>
 </template>
 <script>
@@ -81,13 +88,14 @@ export default {
     Button,
     Dialog,
     Card,
-    Games
+    Games,
   },
   data() {
     return {
       position: 54,
       wins: 0,
       visibleDialog: false,
+      customVisible: false,
       game: null,
       rpfVisible: false,
       tacVisible:false,
@@ -135,7 +143,7 @@ export default {
     },
     startTimer() {
       setTimeout(() => {
-        if(this.visibleDialog === false && this.rpfVisible === false && this.tacVisible === false){
+        if(this.visibleDialog === false && this.rpfVisible === false && this.tacVisible === false && this.customVisible === false){
           const options = ["Rock, Paper, Scissor","Heads or Tails"];
           this.challengedGame = options[Math.floor(Math.random() * options.length)]
           this.challengeVisible= true;
